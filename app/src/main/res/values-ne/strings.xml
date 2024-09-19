@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BloodLink</string>
+    <string name="title_activity_maps">मानचित्र</string>
+    <string name="required">आवश्यक</string>
+    <string name="email">इमेल</string>
+    <string name="password">पासवर्ड</string>
+    <string name="phone_number">फोन नम्बर</string>
+    <string name="sign_up">साइनअप</string>
+    <string name="login">लगइन</string>
+    <string name="forget_password">"पासवर्ड बिर्सनुभयो "</string>
+    <string name="dashboard">ड्यासबोर्ड</string>
+    <string name="requested_list">अनुरोध सूची</string>
+    <string name="name">नाम</string>
+    <string name="age">उमेर</string>
+    <string name="bloodgroup">रक्त समूह</string>
+    <string name="pints">पिन्ट रक्त</string>
+    <string name="location">स्थान</string>
+    <string name="patient_name">पेटेन्ट नाम</string>
+    <string name="pint">पिन्ट रक्त</string>
+    <string name="address">ठेगाना</string>
+    <string name="user_name">प्रयोगकर्ता नाम</string>
+    <string name="type">प्रकार</string>
+    <string name="become_a_donor">दाता बन्नुहोस</string>
+    <string name="forgot_password">पासवर्ड बिर्सनुभयो</string>
+    <string name="middle_name">मध्य नाम</string>
+    <string name="first_name">पहिलो नाम</string>
+    <string name="blood_group">रक्त समूह</string>
+    <string name="last_name">अन्तिम नाम</string>
+    <string name="dob">जन्ममिति</string>
+    <string name="last_donated_date">अन्तिम पटक दान गरिएको समय</string>
+    <string name="confirm_password">पासवर्ड पुष्टि गर्नुहोस्</string>
+    <string name="en">ने</string>
+    <string name="choose_language">भाषा रोज्नुहोस्</string>
+    <string name="request_blood">रगत अनुरोध</string>
+    <string name="my_profile">मेरो प्रोफाइल</string>
+    <string name="become_a_donor_C">दाता बनो</string>
+    <string name="CANCEL_1">रद्द गर्नुहोस्</string>
+</resources>

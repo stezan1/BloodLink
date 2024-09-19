@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">BloodLink</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="required">Required</string>
+    <string name="email">Email\n</string>
+    <string name="password">Password\n</string>
+    <string name="phone_number">Phone Number\n</string>
+    <string name="confirm_password">Confirm Password\n</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget Password\n</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="requested_list">Requested List\n</string>
+    <string name="name">Name =</string>
+    <string name="age">Age =</string>
+    <string name="bloodgroup">BloodGroup\n</string>
+    <string name="pints">"Pints = "</string>
+    <string name="location">Location =</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="pint">Pint</string>
+    <string name="address">Address</string>
+    <string name="user_name">User Name\n</string>
+    <string name="type">Type\n</string>
+    <string name="become_a_donor">Become a donor</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="middle_name">Middle Name\n</string>
+    <string name="first_name">First Name\n</string>
+    <string name="blood_group">BloodGroup</string>
+    <string name="last_name">Last Name\n</string>
+    <string name="dob">Date of birth</string>
+    <string name="last_donated_date">Last donated Date</string>
+    <string name="en">EN</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="request_blood">REQUEST BLOOD</string>
+    <string name="my_profile">MY PROFILE</string>
+    <string name="become_a_donor_C">BECOME A DONOR</string>
+    <string name="CANCEL_1">CANCEL</string>
+
+</resources>

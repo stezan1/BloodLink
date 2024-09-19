@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Other UI elements can go here -->
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:stretchColumns="1">
+
+        <!-- Table rows and cells will be added programmatically -->
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"/>
+    <!-- Other UI elements can go here -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:text="GOOGLE MAP"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        ></TextView>
+
+</LinearLayout>

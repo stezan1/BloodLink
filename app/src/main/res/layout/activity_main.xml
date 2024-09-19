@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".Login_SignUp_ForgetPassword_Portal.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/languagechooseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="317dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            app:cardCornerRadius="7dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="7dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:text="@string/en"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"></ImageView>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- Rest of your layout goes here -->
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="156dp"
+        android:layout_height="210dp"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="55dp"
+        app:srcCompat="@drawable/blood"
+        android:contentDescription="TODO" />
+
+    <EditText
+        android:id="@+id/ipAddress"
+        android:layout_width="308dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/edit_round"
+        android:ems="10"
+        android:hint="Enter Ip address"
+        android:text="192.168.1.76" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BloodLink"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="35dp"
+        android:fontFamily="@font/font1"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneContainer"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/Lightblue"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:endIconMode="clear_text"
+        app:endIconTint="#2196F3"
+        app:helperText="@string/required"
+        app:counterEnabled="true"
+
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/baseline_phone_24"
+        app:startIconTint="#2196F3"
+        app:prefixText="+977"
+        app:counterMaxLength="10"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            android:lines="1"
+            android:text="9869986779" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordContainer"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="#2196F3"
+        app:boxBackgroundMode="filled"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+
+
+        app:endIconMode="password_toggle"
+        app:endIconTint="#2196F3"
+        app:helperText="@string/required"
+        app:helperTextTextColor="@color/red"
+        app:startIconDrawable="@drawable/baseline_lock_24"
+        app:startIconTint="#2196F3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:text="Tero@123" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="18dp"
+        android:background="@drawable/edit_round"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        />
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/sign_up"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="18dp"
+        android:background="@drawable/edit_round"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/forgot_password"
+        android:textAlignment="center"
+        android:textColor="#ffff"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:contextClickable="true"
+        />
+
+</LinearLayout>

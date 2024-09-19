@@ -1,0 +1,314 @@
+[1mdiff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml[m
+[1mindex 28f301f..c117dcb 100644[m
+[1m--- a/app/src/main/AndroidManifest.xml[m
+[1m+++ b/app/src/main/AndroidManifest.xml[m
+[36m@@ -6,6 +6,10 @@[m
+     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />[m
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />[m
+     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />[m
+[32m+[m[32m    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />[m
+[32m+[m[32m    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />[m
+[32m+[m[32m    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>[m
+[32m+[m[32m    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />[m
+ [m
+     <application[m
+ [m
+[36m@@ -53,7 +57,9 @@[m
+             android:exported="false" />[m
+         <activity[m
+             android:name=".dashboard.dashboard"[m
+[31m-            android:exported="false" />[m
+[32m+[m[32m            android:exported="true" >[m
+[32m+[m
+[32m+[m[32m        </activity>[m
+         <activity[m
+             android:name=".myprofile.myprofile"[m
+             android:exported="false" />[m
+[36m@@ -74,6 +80,7 @@[m
+ [m
+                 <category android:name="android.intent.category.LAUNCHER" />[m
+             </intent-filter>[m
+[32m+[m
+         </activity>[m
+     </application>[m
+ [m
+[1mdiff --git a/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/MainActivity.java b/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/MainActivity.java[m
+[1mindex b99bac3..051c435 100644[m
+[1m--- a/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/MainActivity.java[m
+[1m+++ b/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/MainActivity.java[m
+[36m@@ -1,6 +1,8 @@[m
+ package com.example.bloodlink.Login_SignUp_ForgetPassword_Portal;[m
+ [m
+[32m+[m[32mimport android.content.Context;[m
+ import android.content.Intent;[m
+[32m+[m[32mimport android.content.SharedPreferences;[m
+ import android.graphics.Color;[m
+ import android.os.Bundle;[m
+ import android.text.Editable;[m
+[36m@@ -28,8 +30,11 @@[m [mimport com.example.bloodlink.databinding.ActivityMainBinding;[m
+ import org.json.JSONException;[m
+ import org.json.JSONObject;[m
+ [m
+[32m+[m[32mimport java.net.URL;[m
+ import java.util.regex.Pattern;[m
+ [m
+[32m+[m[32mimport TokenClass.Token;[m
+[32m+[m
+ public class MainActivity extends AppCompatActivity {[m
+     ActivityMainBinding binding;[m
+ [m
+[36m@@ -40,9 +45,21 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+         setContentView(binding.getRoot());[m
+         // Ensure textView5 retains its initial text[m
+         binding.titleTextView.setText("BloodLink");[m
+[32m+[m[32m        binding.textView3.setOnClickListener(new View.OnClickListener() {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void onClick(View v) {[m
+[32m+[m[32m                Intent intent = new Intent(MainActivity.this,forgetPassword.class);[m
+[32m+[m[32m                startActivity(intent);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+         binding.loginBtn.setOnClickListener(new View.OnClickListener() {[m
+             @Override[m
+             public void onClick(View v) {[m
+[32m+[m[32m                SharedPreferences sharedPreferences = getSharedPreferences("url_prefs", Context.MODE_PRIVATE);[m
+[32m+[m[32m                SharedPreferences.Editor editor = sharedPreferences.edit();[m
+[32m+[m[32m                String URL = "http://"+binding.ipAddress.getText().toString()+":8085";[m
+[32m+[m[32m                editor.putString("URL", URL);[m
+[32m+[m[32m                editor.apply();[m
+                 login();[m
+             }[m
+         });[m
+[36m@@ -105,9 +122,11 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+     private String validEmail() {[m
+         String emailText = binding.emailEditText.getText().toString().trim();[m
+         if (emailText.isEmpty()) {[m
+[31m-            return "Email cannot be empty";[m
+[32m+[m[32m            //return "Email cannot be empty";[m
+[32m+[m[32m            return "";[m
+         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {[m
+[31m-            return "Invalid Email Address";[m
+[32m+[m[32m            //return "Invalid Email Address";[m
+[32m+[m[32m            return "";[m
+         }[m
+         return null; // Return null if email is valid[m
+     }[m
+[36m@@ -153,9 +172,11 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+     }[m
+     private  void login() {[m
+ [m
+[31m-        final String[] Token = new String[1];[m
+[32m+[m[32m        final String[] Token1 = new String[1];[m
+[32m+[m[32m        SharedPreferences sharedPreferences = getSharedPreferences("url_prefs", Context.MODE_PRIVATE);[m
+[32m+[m[32m        String URL = sharedPreferences.getString("URL", null);[m
+ [m
+[31m-        String url = "http://192.168.1.69:8085/api/v1/user/login";[m
+[32m+[m[32m        String url = URL + "/api/v1/user/login";[m
+         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());[m
+ [m
+         JSONObject jsonRequest = new JSONObject();[m
+[36m@@ -170,10 +191,23 @@[m [mpublic class MainActivity extends AppCompatActivity {[m
+             @Override[m
+             public void onResponse(JSONObject response) {[m
+                 try {[m
+[31m-                    Token[0] = response.getString("accessToken");[m
+[32m+[m[32m                    Token1[0] = response.getString("accessToken");[m
+[32m+[m
+[32m+[m
+[32m+[m[32m                    //SharedPreferences to save Token to be accessed by many activities[m
+[32m+[m[32m                    SharedPreferences sharedPreferences = getSharedPreferences("auth_prefs", Context.MODE_PRIVATE);[m
+[32m+[m[32m                    SharedPreferences.Editor editor = sharedPreferences.edit();[m
+[32m+[m[32m                    editor.putString("AuthToken", Token1[0]);[m
+[32m+[m[32m                    editor.apply();[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m                   // Token token = new Token();[m
+[32m+[m[32m                   // token.setToken(Token1[0]);[m
+                     Intent intent=new Intent(MainActivity.this, dashboard.class);[m
+[31m-                    Log.d("mainToken","hello"+ Token[0]);  // This Token has null value but why??[m
+[31m-                    intent.putExtra("Token", Token[0]);[m
+[32m+[m[32m                    Log.d("mainToken","hello"+ Token1[0]);  // This Token has null value but why??[m
+[32m+[m[32m                   // intent.putExtra("Token", Token1[0]);[m
+                     Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();[m
+                     startActivity(intent);[m
+                     Log.v("LoginResponse",response.toString());[m
+[1mdiff --git a/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/SignUp.java b/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/SignUp.java[m
+[1mindex 465a6fe..06a2b97 100644[m
+[1m--- a/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/SignUp.java[m
+[1m+++ b/app/src/main/java/com/example/bloodlink/Login_SignUp_ForgetPassword_Portal/SignUp.java[m
+[36m@@ -2,8 +2,12 @@[m [mpackage com.example.bloodlink.Login_SignUp_ForgetPassword_Portal;[m
+ [m
+ import androidx.appcompat.app.AppCompatActivity;[m
+ [m
+[32m+[m[32mimport android.content.Context;[m
+ import android.content.Intent;[m
+[32m+[m[32mimport android.content.SharedPreferences;[m
+ import android.os.Bundle;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+ import android.text.Editable;[m
+ import android.text.TextWatcher;[m
+ import android.util.Log;[m
+[36m@@ -36,6 +40,7 @@[m [mActivitySignUpBinding binding;[m
+         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {[m
+             @Override[m
+             public void onClick(View v) {[m
+[32m+[m
+                 Signup();[m
+             }[m
+         });[m
+[36m@@ -207,7 +212,9 @@[m [mActivitySignUpBinding binding;[m
+         return null; // Return null if email is valid[m
+     }[m
+     public void Signup(){[m
+[31m-        String url = "http://192.168.1.69:8085/api/v1/user/signup";[m
+[32m+[m[32m        SharedPreferences sharedPreferences = getSharedPreferences("url_prefs", Context.MODE_PRIVATE);[m
+[32m+[m[32m        String URL = sharedPreferences.getString("URL", null);[m
+[32m+[m[32m        String url = URL + "/api/v1/user/signup";[m
+         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());[m
+ [m
+         JSONObject jsonRequest = new JSONObject();[m
+[36m@@ -240,5 +247,20 @@[m [mActivitySignUpBinding binding;[m
+ [m
+         requestQueue.add(jsonObjectRequest);[m
+     }[m
+[32m+[m[32m    private class GeoCoderHandler extends Handler {[m
+[32m+[m[32m        @Override[m
+[32m+[m[32m        public void handleMessage(Message message) {[m
+[32m+[m[32m            String locationAddress;[m
+[32m+[m[32m            switch (message.what) {[m
+[32m+[m[32m                case 1:[m
+[32m+[m[32m                    Bundle bundle = message.getData();[m
+[32m+[m[32m                    locationAddress = bundle.getString("address");[m
+[32m+[m[32m                    break;[m
+[32m+[m[32m                default:[m
+[32m+[m[32m                    locationAddress = null;[m
+[32m+[m[32m            }[m
+[32m+[m[32m           Log.d("Location1",locationAddress);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+     //----------------------------------------end validation-------------------------------[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/app/src/main/java/com/example/bloodlink/becomeadonor/GeoCodeLocation.java b/app/src/main/java/com/example/bloodlink/becomeadonor/GeoCodeLocation.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3777e47[m
+[1m--- /dev/null[m
+[1m+++ b/app/src/main/java/com/example/bloodlink/becomeadonor/GeoCodeLocation.java[m
+[36m@@ -0,0 +1,56 @@[m
+[32m+[m[32mpackage com.example.bloodlink.becomeadonor;[m
+[32m+[m
+[32m+[m[32mimport android.content.Context;[m
+[32m+[m[32mimport android.location.Address;[m
+[32m+[m[32mimport android.location.Geocoder;[m
+[32m+[m[32mimport android.os.Bundle;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+[32m+[m[32mimport android.util.Log;[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m[32mimport java.util.Locale;[m
+[32m+[m[32mclass GeoCodeLocation {[m
+[32m+[m[32m    private static final String TAG = "GeoCodeLocation";[m
+[32m+[m[32m    public static void getAddressFromLocation(final String locationAddress,[m
+[32m+[m[32m                                              final Context context, final Handler handler) {[m
+[32m+[m[32m        Thread thread = new Thread() {[m
+[32m+[m[32m            @Override[m
+[32m+[m[32m            public void run() {[m
+[32m+[m[32m                Geocoder geocoder = new Geocoder(context,[m
+[32m+[m[32m                        Locale.getDefault());[m
+[32m+[m[32m                String result = null;[m
+[32m+[m[32m                try {[m
+[32m+[m[32m                    List addressList = geocoder.getFromLocationName(locationAddress, 1);[m
+[32m+[m[32m                    if (addressList != null && addressList.size() > 0) {[m
+[32m+[m[32m                        Address address = (Address)[m
+[32m+[m[32m                                addressList.get(0);[m
+[32m+[m[32m                        StringBuilder sb = new StringBuilder();[m
+[32m+[m[32m                        sb.append(address.getLatitude()).append(" ");[m
+[32m+[m[32m                                sb.append(address.getLongitude()).append(" ");[m
+[32m+[m[32m                                        result = sb.toString();[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                } catch (IOException e) {[m
+[32m+[m[32m                    Log.e(TAG, "Unable to connect to Geocoder", e);[m
+[32m+[m[32m                } finally {[m
+[32m+[m[32m                    Message message = Message.obtain();[m
+[32m+[m[32m                    message.setTarget(handler);[m
+[32m+[m[32m                    if (result != null) {[m
+[32m+[m[32m                        message.what = 1;[m
+[32m+[m[32m                        Bundle bundle = new Bundle();[m
+[32m+[m[32m                        bundle.putString("address", result);[m
+[32m+[m[32m                        message.setData(bundle);[m
+[32m+[m[32m                    } else {[m
+[32m+[m[32m                        message.what = 1;[m
+[32m+[m[32m                        Bundle bundle = new Bundle();[m
+[32m+[m[32m                        bundle.putString("address", result);[m
+[32m+[m[32m                        message.setData(bundle);[m
+[32m+[m[32m                    }[m
+[32m+[m[32m                    message.sendToTarget();[m
+[32m+[m[32m                }[m
+[32m+[m[32m            }[m
+[32m+[m[32m        };[m
+[32m+[m[32m        thread.start();[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/app/src/main/java/com/example/bloodlink/becomeadonor/becomeadonor.java b/app/src/main/java/com/example/bloodlink/becomeadonor/becomeadonor.java[m
+[1mindex 5acaf91..bf4780d 100644[m
+[1m--- a/app/src/main/java/com/example/bloodlink/becomeadonor/becomeadonor.java[m
+[1m+++ b/app/src/main/java/com/example/bloodlink/becomeadonor/becomeadonor.java[m
+[36m@@ -1,8 +1,15 @@[m
+ package com.example.bloodlink.becomeadonor;[m
+ [m
+ import android.app.DatePickerDialog;[m
+[32m+[m[32mimport android.content.Context;[m
+ import android.content.Intent;[m
+[32m+[m[32mimport android.content.SharedPreferences;[m
+[32m+[m[32mimport android.location.Location;[m
+[32m+[m[32mimport android.os.Build;[m
+ import android.os.Bundle;[m
+[32m+[m[32mimport android.os.Handler;[m
+[32m+[m[32mimport android.os.Message;[m
+[32m+[m[32mimport android.util.Log;[m
+ import android.view.View;[m
+ import android.widget.ArrayAdapter;[m
+ import android.widget.AutoCompleteTextView;[m
+[36m@@ -15,24 +22,48 @@[m [mimport android.widget.Toast;[m
+ [m
+ import androidx.appcompat.app.AppCompatActivity;[m
+ [m
+[32m+[m[32mimport com.android.volley.AuthFailureError;[m
+[32m+[m[32mimport com.android.volley.Request;[m
+[32m+[m[32mimport com.android.volley.RequestQueue;[m
+[32m+[m[32mimport com.android.volley.Response;[m
+[32m+[m[32mimport com.android.volley.VolleyError;[m
+[32m+[m[32mimport com.android.volley.toolbox.JsonObjectRequest;[m
+[32m+[m[32mimport com.android.volley.toolbox.Volley;[m
+ import com.example.bloodlink.R;[m
+ import com.example.bloodlink.dashboard.dashboard;[m
+[32m+[m[32mimport com.example.bloodlink.databinding.ActivityMapsBinding;[m
+[32m+[m[32mimport com.google.android.gms.location.FusedLocationProviderClient;[m
+[32m+[m[32mimport com.google.android.gms.maps.GoogleMap;[m
+ [m
+[32m+[m[32mimport org.json.JSONException;[m
+[32m+[m[32mimport org.json.JSONObject;[m
+[32m+[m
+[32m+[m[32mimport java.time.LocalDate;[m
+ import java.util.ArrayList;[m
+ import java.util.Calendar;[m
+[32m+[m[32mimport java.util.HashMap;[m
+[32m+[m[32mimport java.util.Map;[m
+ [m
+ public class becomeadonor extends AppCompatActivity {[m
+[32m+[m[32m    private String latLong;[m
+[32m+[m[32m    private String id;[m
+[32m+[m[32m    private GoogleMap mMap;[m
+[32m+[m[32m    private ActivityMapsBinding binding;[m
+[32m+[m[32m    private final int FINE_PERMISSION_CODE = 1;[m
+[32m+[m[32m    Location currentLocation;[m
+[32m+[m[32m    FusedLocationProviderClient fusedLocationProviderClient;[m
+[32m+[m
+     DatePickerDialog.OnDateSetListener setListener;[m
+[31m-    TextView dob;[m
+[32m+[m
