@@ -2,6 +2,7 @@
 <b>"BloodLink" is an innovative Android app that simplifies the blood donation process by connecting donors with recipients in need. It allows donors to create detailed profiles, including blood type, location, and availability, while receivers can search for compatible donors. The app features real-time notifications to ensure timely communication and match alerts. Donors can contact recipients directly via phone once a match is made. BloodLink emphasizes user safety with strong verification measures and partners with local healthcare organizations to maximize its life-saving impact. The app is committed to privacy, security, and accessibility.<b>
 
 <h3>Modules</h3>
+
 ![image](https://github.com/user-attachments/assets/edf16b80-1a5a-4405-819e-86353b6aab6c)
 ![image](https://github.com/user-attachments/assets/d1112a00-a82b-484f-bf4b-61f217112e3a)
 ![image](https://github.com/user-attachments/assets/56e659e2-5522-4cc3-a9e0-c88799a25577)
